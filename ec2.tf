@@ -16,6 +16,13 @@ resource "aws_instance" "wordpress"{
     #    }
     #}
 
+     provisioner "remote-exec"{
+        inline = [
+            "./template.tpl"
+        ]
+        on_failure = continue
+    }
+
     provisioner "local-exec"{
         command = "echo Instance Type=${self.instance_type},Instance ID=${self.id},Public DNS=${self.public_dns},AMI ID=${self.ami} >> allinstancedetails"
     }

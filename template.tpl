@@ -1,5 +1,5 @@
  #!/bin/bash
-    echo “CONSUL_ADDRESS = ${consul_address]” > /tmp/iplist
+    echo “CONSUL_ADDRESS = ${consul_address}” > /tmp/iplist
     sudo yum update -y
     sudo yum install -y nginx
     sudo service nginx start
