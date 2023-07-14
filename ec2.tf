@@ -10,11 +10,11 @@ resource "aws_instance" "wordpress"{
     }
 
     #data "template_file" "init" {
-    #template = "${file("${path.module}/template.tpl")}"
+    #git template = "${file("${path.module}/template.tpl")}"
     #vars =  {
     #    consul_address = "${aws_instance.consul.private.ip}"
     #    }
-    }
+    #}
 
     provisioner "local-exec"{
         command = "echo Instance Type=${self.instance_type},Instance ID=${self.id},Public DNS=${self.public_dns},AMI ID=${self.ami} >> allinstancedetails"
