@@ -69,6 +69,7 @@ resource "aws_route_table" "devVPC_public_route_1"{
         Name = "dev_terraform_vpc_public_route_1"
     }
 }
+
 # Provides a resource to create an association between a Public Route Table and a Public Subnet
 resource "aws_route_table_association" "public_subnet_association_1" {
     route_table_id = aws_route_table.devVPC_public_route_1.id
