@@ -13,7 +13,7 @@ output "public_subnet_2"{
 
 }
 output "security_group"{
-    value = aws_security_group.devVPC_sg_allow_http.id
+    value = aws_security_group.devVPC_sg_allow_ssh_http.id
 }
 
 /*output "packer_ami"{
