@@ -7,14 +7,14 @@ sudo systemctl enable httpd
 sudo systemctl enable mariadb
 sudo mysql_secure_installation
 
-"CREATE DATABASE my_wp_db";
-"CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password123'";
-"GRANT ALL ON my_wp_db.* TO 'wp_user'@'localhost'";
-"FLUSH PRIVILEGES";
+"CREATE DATABASE my_wp_db;"
+"CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password123';"
+"GRANT ALL ON my_wp_db.* TO 'wp_user'@'localhost';"
+"FLUSH PRIVILEGES;"
 
 cd var/www/html
 
-cudo curl -0 https://wordpress.org/latest.tar.gz
+cudo curl -O https://wordpress.org/latest.tar.gz
 sudo tar -xzf latest.tar.gz
 sudo mv wordpress/* .
 sudo rm -rf wordpress latest.tar.gz
