@@ -95,7 +95,7 @@ resource "aws_route_table_association" "public_subnet_association_2" {
     depends_on = [aws_route_table.devVPC_public_route_2, aws_subnet.devVPC_public_subnet_2]
 }
 
-resource "aws_security_group" "devVPC_sg_allow_http"{
+resource "aws_security_group" "devVPC_sg_allow_ssh_http"{
     vpc_id = aws_vpc.devVPC.id
     name = "devVPC_terraform_vpc_allow_http"
     tags = {
