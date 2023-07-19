@@ -22,9 +22,9 @@ sudo rm -rf wordpress latest.tar.gz
 sudo chown -R apache:apache /var/www/html
 
 sudo mv wp-config-sample.php wp-config.php
-sudo sed -i "s/database_name_here/$DB_NAME/g" /var/www/html/wp-config.php
-sudo sed -i "s/username_here/$DB_USER/g" /var/www/html/wp-config.php
-sudo sed -i "s/password_here/$DB_PASSWORD/g" /var/www/html/wp-config.php
+#sudo sed -i "s/database_name_here/$DB_NAME/g" /var/www/html/wp-config.php
+#sudo sed -i "s/username_here/$DB_USER/g" /var/www/html/wp-config.php
+#sudo sed -i "s/password_here/$DB_PASSWORD/g" /var/www/html/wp-config.php
 
 sudo chmod u-w /var/www/html/wp-config.php
 
