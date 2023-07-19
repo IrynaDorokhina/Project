@@ -107,7 +107,7 @@ resource "aws_security_group" "devVPC_sg_allow_http"{
 resource "aws_security_group_rule" "devVPC_http_ingress_access"{
     from_port = 80
     protocol = "tcp"
-    security_group_id = aws_security_group.devVPC_sg_allow_http.id
+    security_group_id = aws_security_group.devVPC_sg_allow_ssh_http.id
     to_port= 80
     type = "ingress"
     cidr_blocks = [var.cidr_blocks]
@@ -116,7 +116,7 @@ resource "aws_security_group_rule" "devVPC_http_ingress_access"{
 resource "aws_security_group_rule" "devVPC_http8080_ingress_access"{
     from_port = 8080
     protocol = "tcp"
-    security_group_id = aws_security_group.devVPC_sg_allow_http.id
+    security_group_id = aws_security_group.devVPC_sg_allow_ssh_http.id
     to_port= 8080
     type = "ingress"
     cidr_blocks = [var.cidr_blocks]
@@ -128,6 +128,6 @@ resource "aws_security_group_rule" "devVPC_egress_access" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = [var.cidr_blocks]
-    security_group_id = aws_security_group.devVPC_sg_allow_http.id
+    security_group_id = aws_security_group.devVPC_sg_allow_ssh_http.id
     type = "egress"
 }
