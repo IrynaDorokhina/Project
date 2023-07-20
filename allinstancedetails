@@ -4,3 +4,4 @@ Instance Type=t3.micro,Instance ID=i-090ecd571f5cf22bd,Public DNS=ec2-35-87-250-
 Instance Type=t3.micro,Instance ID=i-0f4bd5b6bfd3a18a5,Public DNS=ec2-34-221-61-216.us-west-2.compute.amazonaws.com,AMI ID=ami-0ae49954dfb447966
 Instance Type=t3.micro,Instance ID=i-073a13ec34e15f846,Public DNS=ec2-35-93-160-241.us-west-2.compute.amazonaws.com,AMI ID=ami-0ae49954dfb447966
 Instance Type=t3.micro,Instance ID=i-0a9e9a7ab33c83940,Public DNS=ec2-35-87-96-254.us-west-2.compute.amazonaws.com,AMI ID=ami-0ae49954dfb447966
+Instance Type=t3.micro,Instance ID=i-0f1ad7b75d50af27f,Public DNS=ec2-52-88-225-207.us-west-2.compute.amazonaws.com,AMI ID=ami-0ae49954dfb447966
