@@ -1,7 +1,13 @@
  #!/bin/bash
 sudo yum update -y
 sudo yum install -y httpd mariadb105-server
-sudo yum install -y php php-cli php-common
+
+sudo yum install -y php-mysqli
+sudo amazon-linux-extras install -y epel
+sudo yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo amazon-linux-extras enable php8.0
+sudo yum clean metadata
+sudo yum install -y php-cli php-pdo php-fpm php-json php-mysqlnd php php-{mbstring,json,xml,mysqlnd}
 
 sudo systemctl start httpd
 sudo systemctl start mariadb
