@@ -1,6 +1,6 @@
  #!/bin/bash
 sudo yum update -y
-sudo yum install -y httpd mariadb-server php php-mysql
+sudo yum install -y httpd mariadb105-server php php-mysqli php-json
 
 sudo systemctl start httpd
 sudo systemctl start mariadb
