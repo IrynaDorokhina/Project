@@ -10,10 +10,10 @@ sudo systemctl enable mariadb
 
 sudo mysql_secure_installation
 
-CREATE DATABASE my_wp_db;
-CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password123';
-GRANT ALL ON my_wp_db.* TO 'wp_user'@'localhost';
-FLUSH PRIVILEGES;
+sudo mysql -e "CREATE DATABASE my_wp_db;"
+sudo mysql -e "CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password123';"
+sudo mysql -e "GRANT ALL ON my_wp_db.* TO 'wp_user'@'localhost';"
+sudo mysql -e "FLUSH PRIVILEGES;"
 
 cd var/www/html
 
@@ -26,13 +26,13 @@ sudo chown -R apache:apache /var/www/html
 
 sudo mv wp-config-sample.php wp-config.php
 
-#DB_NAME="my_wp_db"
-#DB_USER="wp_user"
-#DB_PASSWORD="password123"
-#WP_PASSWORD="HelloWordpress111!!!"
-#sudo sed -i "s/database_name_here/$DB_NAME/g" /var/www/html/wp-config.php
-#sudo sed -i "s/username_here/$DB_USER/g" /var/www/html/wp-config.php
-#sudo sed -i "s/password_here/$DB_PASSWORD/g" /var/www/html/wp-config.php
+DB_NAME="my_wp_db"
+DB_USER="wp_user"
+DB_PASSWORD="password123"
+WP_PASSWORD="HelloWordpress111!!!"
+sudo sed -i "s/database_name_here/$DB_NAME/g" /var/www/html/wp-config.php
+sudo sed -i "s/username_here/$DB_USER/g" /var/www/html/wp-config.php
+sudo sed -i "s/password_here/$DB_PASSWORD/g" /var/www/html/wp-config.php
 
 sudo chmod u-w /var/www/html/wp-config.php
 
