@@ -52,7 +52,7 @@ resource "aws_lb_listener" "myelb_end" {
 resource "aws_launch_template" "my_launch_template" {
     name = "my-launch-template"
     description = "My Launch Template"
-    image_id = data.aws_ami.ami_wordpress.id
+    image_id = data.aws_ami.wordpress.id
     instance_type = var.instance_type
 }
 
