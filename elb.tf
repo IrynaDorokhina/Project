@@ -61,7 +61,7 @@ resource "aws_autoscaling_group" "my_asg" {
     desired_capacity   = 2
     max_size           = 4
     min_size           = 2
-    vpc_zone_identifier  = [data.aws_availability_zones.devVPC_available.names[1], data.aws_availability_zones.devVPC_available.names[2]]
+    vpc_zone_identifier  = [data.aws_availability_zones.private_subnet_1, data.aws_availability_zones.private_subnet_2]
     target_group_arns = [aws_lb_target_group.target_group.arn]
     health_check_type = "EC2"
     #health_check_grace_period = 300 # default is 300 seconds  
