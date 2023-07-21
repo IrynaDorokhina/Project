@@ -77,7 +77,7 @@ resource "aws_autoscaling_group" "myasg" {
       #instance_warmup = 300 # Default behavior is to use the Auto Scaling Group's health check grace period.
         min_healthy_percentage = 50
     }
-        triggers = [ "launch", "desired_capacity" ] # You can add any argument from ASG here, if those has changes, ASG Instance Refresh will trigger
+        triggers = [ "launch.tf", "desired_capacity" ] # You can add any argument from ASG here, if those has changes, ASG Instance Refresh will trigger
     }  
     tag {
         key                 = "Name"
