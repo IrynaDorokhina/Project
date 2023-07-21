@@ -4,7 +4,7 @@ resource "aws_ami_from_instance" "ami_wordpress" {
 }
 
 resource "aws_lb_target_group" "myelb" {
-    name = "target_group_1"
+    name = "mytargetgroup"
     port = 80
     protocol = "HTTP"
     vpc_id = aws_vpc.devVPC.id
