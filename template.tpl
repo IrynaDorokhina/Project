@@ -17,14 +17,19 @@ sudo systemctl enable mariadb
 
 #sudo mysql_secure_installation
 
-DB_NAME="my_wp_db"
-DB_USER="wp_user"
-DB_PASSWORD="password123"
-WP_PASSWORD="HelloWordpress111!!!"
+#DB_NAME="my_wp_db"
+#DB_USER="wp_user"
+#DB_PASSWORD="password123"
+#WP_PASSWORD="HelloWordpress111!!!"
 
-sudo mysql -e "CREATE DATABASE '${DB_NAME}' /*\!40100 DEFAULT CHARACTER SET utf8 */;"
-sudo mysql -e "CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON '${DB_NAME}'.* TO '${DB_USER}'@'localhost';"
+#sudo mysql -e "CREATE DATABASE '${DB_NAME}' /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+#sudo mysql -e "CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+#sudo mysql -e "GRANT ALL PRIVILEGES ON '${DB_NAME}'.* TO '${DB_USER}'@'localhost';"
+#sudo mysql -e "FLUSH PRIVILEGES;"
+
+sudo mysql -e "CREATE DATABASE wordpress;"
+sudo mysql -e "CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'wppassword';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
 cd /var/www/html
@@ -38,10 +43,11 @@ sudo chown -R apache:apache /var/www/html
 
 sudo mv wp-config-sample.php wp-config.php
 
-sudo sed -i "s/database_name_here/${DB_NAME}" /var/www/html/wp-config.php
-sudo sed -i "s/username_here/${DB_USER}" /var/www/html/wp-config.php
-sudo sed -i "s/password_here/${DB_PASSWORD}" /var/www/html/wp-config.php
+sudo cp wp-config-sample.php wp-config.php 
+sudo sed -i 's/database_name_here/wordpress/' wp-config.php 
+sudo sed -i 's/username_here/wpuser/' wp-config.php 
+sudo sed -i 's/password_here/wppassword/' wp-config.php
 
-sudo chmod u-w /var/www/html/wp-config.php
+#sudo chmod u-w /var/www/html/wp-config.php
 
 sudo systemctl restart httpd
