@@ -1,4 +1,4 @@
-resource "aws_ami_from_instance" "wordpress" {
+resource "aws_ami_from_instance" "ami_wordpress" {
   name               = "ami_wordpress"
   source_instance_id = aws_instance.wordpress.id
 }
@@ -21,7 +21,7 @@ resource "aws_lb_target_group" "myelb" {
         }
 }
 
-resource "aws_lb_target_group_attachment" "attach-app1" {
+resource "aws_lb_target_group_attachment" "attach-myelb" {
     target_group_arn = aws_lb_target_group.myelb.arn
     target_id = aws_instance.wordpress.id
     port = 80
@@ -52,7 +52,7 @@ resource "aws_lb_listener" "myelb_end" {
 resource "aws_launch_template" "my_launch_template" {
     name = "my-launch-template"
     description = "My Launch Template"
-    image_id = data.aws_ami.ami_wordpress.image_id
+    image_id = aws_ami_from_instance.ami_wordpress.id
     instance_type = var.instance_type
 }
 
