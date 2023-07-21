@@ -22,12 +22,12 @@ DB_USER="wp_user"
 DB_PASSWORD="password123"
 WP_PASSWORD="HelloWordpress111!!!"
 
-sudo mysql -e "CREATE DATABASE ${DB_NAME} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
-sudo mysql -e "CREATE USER ${DB_USER}@localhost IDENTIFIED BY '${DB_PASSWORD}';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'localhost';"
+sudo mysql -e "CREATE DATABASE '${DB_NAME}' /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+sudo mysql -e "CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON '${DB_NAME}'.* TO '${DB_USER}'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
-cd var/www/html
+cd /var/www/html
 
 sudo curl -O https://wordpress.org/latest.tar.gz
 sudo tar -xzf latest.tar.gz
