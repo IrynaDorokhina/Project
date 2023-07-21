@@ -1,7 +1,7 @@
-resource "aws_ami_from_instance" "ami_wordpress" {
-    name               = "ami_wordpress"
-    source_instance_id = aws_instance.wordpress.id
-}
+#resource "aws_ami_from_instance" "ami_wordpress" {
+#    name               = "ami_wordpress"
+#    source_instance_id = aws_instance.wordpress.id
+#}
 
 resource "aws_lb_target_group" "target_group" {
     name = "target-group"
@@ -77,7 +77,7 @@ resource "aws_autoscaling_group" "my_asg" {
       #instance_warmup = 300 # Default behavior is to use the Auto Scaling Group's health check grace period.
         min_healthy_percentage = 50
     }
-        triggers = [ "launch_template", "desired_capacity" ] # You can add any argument from ASG here, if those has changes, ASG Instance Refresh will trigger
+        #triggers = [ "launch", "desired_capacity" ] # You can add any argument from ASG here, if those has changes, ASG Instance Refresh will trigger
     }  
     tag {
         key                 = "Name"
