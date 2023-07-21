@@ -3,7 +3,7 @@ resource "aws_lb_target_group" "front" {
     port = 80
     protocol = "HTTP"
     vpc_id = aws_vpc.devVPC.id
-    health check {
+    health_check {
         enabled = true
         healthy_threshold = 3
         interval = 10
