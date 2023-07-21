@@ -33,7 +33,7 @@ resource "aws_lb" "myelb" {
     load_balancer_type = "application"
     security_groups = [aws_security_group.devVPC_sg_allow_ssh_http.id]
     subnets= [aws_subnet.devVPC_public_subnet_1.id, aws_subnet.devVPC_public_subnet_2.id] #FIX
-    enable_deletion_protection = true
+    #enable_deletion_protection = true
     tags = {
     Environment = "myelb"
     }
