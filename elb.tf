@@ -66,7 +66,7 @@ resource "aws_autoscaling_group" "my_asg" {
     module.vpc.private_subnet[0],
     module.vpc.private_subnet[1]
   ]*/
-  target_group_arns =  aws_lb.myelb.target_group_arns
+  target_group_arns =  data.aws_lb_target_group.target_group_arns
   health_check_type = "EC2"
   #health_check_grace_period = 300 # default is 300 seconds  
   # Launch Template
