@@ -53,7 +53,7 @@ resource "aws_launch_template" "my_launch_template" {
     name = "my-launch-template"
     description = "My Launch Template"
     image_id = aws_ami_from_instance.ami_wordpress.id
-    instance_type = var.instance_type
+    #instance_type = var.instance_type
 }
 
 resource "aws_autoscaling_group" "my_asg" {
