@@ -44,12 +44,12 @@ output "launch_template_latest_version" {
 # Autoscaling Outputs
 output "autoscaling_group_id" {
   description = "Autoscaling Group ID"
-  value = aws_autoscaling_group.my_asg.id 
+  value = aws_autoscaling_group.myasg.id 
 }
 
 output "autoscaling_group_name" {
   description = "Autoscaling Group Name"
-  value = aws_autoscaling_group.my_asg.name 
+  value = aws_autoscaling_group.myasg.name 
 }
 
 output "autoscaling_group_arn" {
