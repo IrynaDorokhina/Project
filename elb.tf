@@ -61,7 +61,7 @@ resource "aws_autoscaling_group" "my_asg" {
   desired_capacity   = 2
   max_size           = 4
   min_size           = 2
-  vpc_zone_identifier  = aws_vpc.devVPC.private_subnet
+  vpc_zone_identifier  = [aws_vpc.devVPC.private_subnet_1, aws_subnet.devVPC_public_subnet_2]
   /*[
     module.vpc.private_subnet[0],
     module.vpc.private_subnet[1]
