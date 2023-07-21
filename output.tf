@@ -54,5 +54,5 @@ output "autoscaling_group_name" {
 
 output "autoscaling_group_arn" {
   description = "Autoscaling Group ARN"
-  value = aws_autoscaling_group.my_asg.arn 
+  value = aws_autoscaling_group.myasg.arn 
 }
