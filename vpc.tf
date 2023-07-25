@@ -122,7 +122,7 @@ resource "aws_security_group_rule" "devVPC_http_ingress_access"{
     type = "ingress"
     cidr_blocks = [var.cidr_blocks]
 }
-# Ingress Security Port 8080 (Inbound)
+/*# Ingress Security Port 8080 (Inbound)
 resource "aws_security_group_rule" "devVPC_http8080_ingress_access"{
     from_port = 8080
     protocol = "tcp"
@@ -130,7 +130,7 @@ resource "aws_security_group_rule" "devVPC_http8080_ingress_access"{
     to_port= 8080
     type = "ingress"
     cidr_blocks = [var.cidr_blocks]
-}
+}*/
 
 # Egress Security (Outbound) - Allow all outbound traffic
 resource "aws_security_group_rule" "devVPC_egress_access" {
@@ -142,10 +142,17 @@ resource "aws_security_group_rule" "devVPC_egress_access" {
     type = "egress"
 }
 
-resource "aws_s3_bucket" "projectbucket01" {}
-    //bucket_name = "projectbucket01"
+resource "aws_s3_bucket" "projectbucket01" {
+    bucket_name = "projectbucket01"
     variable "acl_value" {
         default = "public-read"
+    }
+    
+}
+
+resource "aws_s3_account_public_access_block" "projectbucket01" {
+  block_public_acls   = true
+  block_public_policy = true
 }
 
 /*resource "aws_s3_bucket" "projectbucket02" {}
