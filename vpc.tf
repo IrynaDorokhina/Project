@@ -143,7 +143,7 @@ resource "aws_security_group_rule" "devVPC_egress_access" {
 }
 
 resource "aws_s3_bucket" "projectbucket01" {}
-    bucket_name = "projectbucket01"
+    //bucket_name = "projectbucket01"
     variable "acl_value" {
         default = "private"
 }
