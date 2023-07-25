@@ -31,7 +31,7 @@ output "public_dns"{
 }*/
 
 # Launch Template Outputs
-output "launch_template_id" {
+/*output "launch_template_id" {
   description = "Launch Template ID"
   value = aws_launch_template.my_launch_template.id
 }
@@ -55,4 +55,4 @@ output "autoscaling_group_name" {
 output "autoscaling_group_arn" {
   description = "Autoscaling Group ARN"
   value = aws_autoscaling_group.myasg.arn 
-}
+}*/
