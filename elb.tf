@@ -3,7 +3,7 @@
 #    source_instance_id = aws_instance.wordpress.id
 #}
 
-resource "aws_lb_target_group" "target_group" {
+/*resource "aws_lb_target_group" "target_group" {
     name = "target-group"
     port = 80
     protocol = "HTTP"
@@ -85,4 +85,4 @@ resource "aws_autoscaling_group" "myasg" {
         propagate_at_launch = true
     }      
 }
-#&&
+*/

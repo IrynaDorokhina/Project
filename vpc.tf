@@ -141,3 +141,9 @@ resource "aws_security_group_rule" "devVPC_egress_access" {
     security_group_id = aws_security_group.devVPC_sg_allow_ssh_http.id
     type = "egress"
 }
+
+resource "aws_s3_bucket" "projectbucket01" {}
+    bucket = "projectbucket01"
+    variable "acl_value" {
+        default = "private"
+}
