@@ -142,18 +142,35 @@ resource "aws_security_group_rule" "devVPC_egress_access" {
     type = "egress"
 }
 
-resource "aws_s3_bucket" "projectbucket001" {
-  bucket = "projectbucket001"
-  region = "us-west-2"
+/*#Create pulic access bucket
+resource "aws_s3_bucket" "projectbucket022" {
+  bucket = "projectbucket022"
 }
 
-resource "aws_s3_bucket_public_access_block" "projectbucket001" {
-  bucket = "projectbucket001"
-  block_public_acls   = true
-  block_public_policy = true
-}
-
-/*resource "aws_s3_account_public_access_block" "projectbucket01" {
+resource "aws_s3_bucket_public_access_block" "projectbucket022" {
+  bucket = aws_s3_bucket.projectbucket022.id
   block_public_acls   = false
   block_public_policy = false
 }*/
+
+#Create private bucket
+resource "aws_s3_bucket" "projectbucket024" {
+bucket = "projectbucket024"
+    tags = {
+        Name = "projectbucket024"
+    }
+}
+
+resource "aws_s3_bucket_acl" "s3_bucket_acl" {
+  bucket = aws_s3_bucket.projectbucket024.id
+  acl    = "private"
+  depends_on = [ aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership ]
+}
+
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.projectbucket024.id
+  rule {
+    object_ownership = "ObjectWriter"  //BucketOwnerPreferred
+  }
+}

@@ -1,10 +1,24 @@
+#Select newest AMI-id
+data "aws_ami" "latest_amazon_linux" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  owners = ["amazon"] # Amazon
+}
+
 resource "aws_instance" "wordpress"{
-    ami = "ami-0ae49954dfb447966"
-    instance_type = "t3.micro"
+    ami = data.aws_ami.latest_amazon_linux.id
+    instance_type = "t2.micro"
     key_name = "vockey"
     vpc_security_group_ids = [aws_security_group.devVPC_sg_allow_ssh_http.id]
     subnet_id = aws_subnet.devVPC_public_subnet_1.id
-    user_data = "${file("template.tpl")}"
+    user_data = file("userdata.sh")
     tags = {
         Name = "wordpress"
     }

@@ -1,8 +1,8 @@
- #!/bin/bash
+#!/bin/bash
 sudo yum update -y
 sudo yum install -y httpd mariadb105-server
 
-sudo yum install -y php-mysqli
+sudo yum install -y php-mysqli          //sudo yum install -y php-mysqlnd
 sudo amazon-linux-extras install -y epel
 sudo yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 sudo amazon-linux-extras enable php8.0
