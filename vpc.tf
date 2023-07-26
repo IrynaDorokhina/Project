@@ -144,6 +144,7 @@ resource "aws_security_group_rule" "devVPC_egress_access" {
 
 resource "aws_s3_bucket" "projectbucket001" {
   bucket = "projectbucket001"
+  region = "us-west-2"
 }
 
 resource "aws_s3_bucket_public_access_block" "projectbucket001" {
