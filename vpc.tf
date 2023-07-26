@@ -142,11 +142,14 @@ resource "aws_security_group_rule" "devVPC_egress_access" {
     type = "egress"
 }
 
-resource "aws_s3_bucket" "projectbucket02" {
-    bucket = "projectbucket02"
-    block_public_acls = false
-    block_public_policy = false
-    //restrict_public_buckets = false
+resource "aws_s3_bucket" "projectbucket001" {
+  bucket = "projectbucket001"
+}
+
+resource "aws_s3_bucket_public_access_block" "projectbucket001" {
+  bucket = "projectbucket001"
+  block_public_acls   = true
+  block_public_policy = true
 }
 
 /*resource "aws_s3_account_public_access_block" "projectbucket01" {
