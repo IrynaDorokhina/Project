@@ -146,7 +146,7 @@ resource "aws_s3_bucket" "projectbucket02" {
     bucket = "projectbucket02"
     block_public_acls = false
     block_public_policy = false
-    restrict_public_buckets = false
+    //restrict_public_buckets = false
 }
 
 /*resource "aws_s3_account_public_access_block" "projectbucket01" {
