@@ -3,8 +3,10 @@
 ### Setup Wordpress ###
 # This script installs MariaDB, PHP, configures a WordPress database, downloads and configures WordPress and updates PHP version
 
+sudo yum update -y
+
 # Install MariaDB, PHP and necessary tools
-sudo yum install -y httpd mariadb-server php php-mysqlnd unzip
+sudo yum install -y httpd mariadb105-server php php-mysqlnd unzip
 
 # Start Apache service and enable it on system startup
 sudo systemctl start httpd

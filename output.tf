@@ -1,19 +1,19 @@
 output "vpc_id"{
-    value = aws_vpc.devVPC.id    
+    value = aws_vpc.wp-vpc.id    
 }
 output "aws_internet_gateway"{
-    value = aws_internet_gateway.devVPC_IGW.id  
+    value = aws_internet_gateway.VPC_IGW.id  
 }
 output "public_subnet_1"{
-    value = aws_subnet.devVPC_public_subnet_1.id 
+    value = aws_subnet.public_subnet_1.id 
 } 
 
 output "public_subnet_2"{
-    value = aws_subnet.devVPC_public_subnet_2.id 
+    value = aws_subnet.public_subnet_2.id 
 
 }
 output "security_group"{
-    value = aws_security_group.devVPC_sg_allow_ssh_http.id
+    value = aws_security_group.VPC_sg_allow_ssh_http.id
 }
 
 /*output "packer_ami"{
