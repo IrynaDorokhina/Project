@@ -15,13 +15,11 @@ sudo systemctl start mariadb
 sudo systemctl enable httpd
 sudo systemctl enable mariadb
 
-#sudo mysql_secure_installation
-
-DB_NAME="my_wp_db"
-DB_USER="wp_user"
-DB_PASSWORD="password123"
-WP_USER = "wp_user1"
-WP_PASSWORD="HelloWordpress111!!!"
+DB_NAME="wordpress"
+DB_USER="wpuser"
+DB_PASSWORD="wppassword"
+WP_USER = "wpuser"
+WP_PASSWORD="wppassword"
 
 sudo mysql -e "CREATE DATABASE ${DB_NAME} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
 sudo mysql -e "CREATE USER ${DB_USER}@localhost IDENTIFIED BY ${DB_PASSWORD};"

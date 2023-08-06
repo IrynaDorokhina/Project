@@ -1,3 +1,69 @@
+
+resource "aws_lb" "load-balancer" {
+    name = "load-balancer"
+    internal = false
+    load_balancer_type = "application"
+    security_groups = [ aws_security_group.elb-sg.id ]
+    subnets = [ aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id ]
+    enable_deletion_protection = false
+        tags = {
+            Environment = "production"
+    }
+    provisioner "local-exec" {
+        command = "echo elb dns name = ${self.dns_name} >> metadatafile.txt"
+    }
+}
+
+resource "aws_lb_target_group" "target-group" {
+    name = "elb-target-group"
+    port = 80
+    protocol = "HTTP"
+    vpc_id = aws_vpc.wp-vpc.id
+}
+
+resource "aws_lb_listener" "listener" {
+    load_balancer_arn = aws_lb.load-balancer.arn
+    port = "80"
+    protocol = "HTTP"
+    default_action {
+        type = "forward"
+        target_group_arn = aws_lb_target_group.target-group.arn
+    }
+}
+
+resource "aws_security_group" "elb-sg" {
+    vpc_id = aws_vpc.wp-vpc.id
+    name = "elb-sg"
+        tags = {
+            Name = "elb-sg"
+        }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "elb-http-ingress" {
+    from_port = 80
+    ip_protocol = "tcp"
+    security_group_id = aws_security_group.elb-sg.id
+    to_port = 80
+    cidr_ipv4 = var.cidr_blocks
+}
+
+resource "aws_vpc_security_group_ingress_rule" "elb-https-ingress" {
+    from_port = 443
+    ip_protocol = "tcp"
+    security_group_id = aws_security_group.elb-sg.id
+    to_port = 443
+    cidr_ipv4 = var.cidr_blocks
+}
+
+resource "aws_vpc_security_group_egress_rule" "elb-http-egress" {
+    from_port = 80
+    ip_protocol  = "tcp"
+    security_group_id = aws_security_group.elb-sg.id
+    to_port = 80
+    referenced_security_group_id = aws_security_group.autoscaling-sg.id
+}
+
+
 #resource "aws_ami_from_instance" "ami_wordpress" {
 #    name               = "ami_wordpress"
 #    source_instance_id = aws_instance.wordpress.id

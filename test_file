@@ -1,0 +1,31 @@
+/*
+#just for info 
+# Instance Configuration
+resource "aws_instance" "provisioner-remoteVM"{
+    ami = "ami-0d2017e886fc2c0ab"
+    instance_type = var.instance_type
+    key_name = "terraform"
+    vpc_security_group_ids = [aws_security_group.dev_terraform_sg_allow_ssh_http.id]
+    subnet_id = aws_subnet.public_subnet.id
+    tags = {
+        Name = "remote-instance"
+    }
+    provisioner "remote-exec"{
+        inline = [
+            "sudo yum update -y",
+            "sudo yum install -y nginx",
+            "sudo service nginx start"
+        ]
+        on_failure = continue
+    }
+    provisioner "local-exec"{
+        command = "echo Instance Type=${self.instance_type},Instance ID=${self.id},Public DNS=${self.public_dns},AMI ID=${self.ami} >> allinstancedetails"
+    }
+    connection {
+        type = "ssh"
+        host = aws_instance.provisioner-remoteVM.public_ip
+        user = "ec2-user"
+        private_key=file("${path.module}/terraform.pem")
+    }
+}
+*/

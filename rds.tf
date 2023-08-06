@@ -1,7 +1,7 @@
 resource "aws_db_subnet_group" "db-subnet-group" {
-  name        = "db_subnet_group"
-  description = "DB group of subnets"
-  subnet_ids  = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
+    name = "db_subnet_group"
+    description = "DB group of subnets"
+    subnet_ids  = [ aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id ]
 }
 
 #create a RDS Database Instance
@@ -16,41 +16,70 @@ resource "aws_db_subnet_group" "db-subnet-group" {
 #Multi-AZ not required
 
 resource "aws_db_instance" "wp-db" {
-  engine               = "mysql"
-  identifier           = "myrdsinstance"
-  allocated_storage    =  20
-  engine_version       = "5.7"
-  instance_class       = "db.t2.micro"
-  username             = "admin"
-  password             = "password123"
-  parameter_group_name = "default.mysql5.7"
-  vpc_security_group_ids = [aws_security_group.db-sg.id]
-  #skip_final_snapshot  = true
-  #publicly_accessible =  true
+    engine = "mysql"
+    identifier = "db-rds"
+    allocated_storage = 20
+    engine_version = "5.7"
+    instance_class = "db.t2.micro"
+    username = "admin"
+    password = "password123"
+    parameter_group_name = "default.mysql5.7"
+    vpc_security_group_ids = [ aws_security_group.db-sg.id ]
+    db_subnet_group_name   = aws_db_subnet_group.db-subnet-group.id
+    skip_final_snapshot = true
+    #publicly_accessible = true
+    #provisioner "local-exec"{
+    #  command = "chmod 777 migrate.sh; ./migrate.sh"
+    #}
+    provisioner "local-exec" {
+        command = "echo rds endpoint = ${self.endpoint} >> metadatafile.txt"
+    }
 }
 
-
-#create a security group for RDS Database Instance
 resource "aws_security_group" "db-sg" {
-  name = "db-gs"
-  ingress {
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+    vpc_id = aws_vpc.wp-vpc.id
+    name = "db-sg"
+    tags = {
+        Name = "db-sg"
+    }
 }
+
+resource "aws_vpc_security_group_ingress_rule" "db-ingress" {
+    from_port = 3306
+    ip_protocol = "tcp"
+    security_group_id = aws_security_group.db-sg.id
+    to_port = 3306
+    referenced_security_group_id= aws_security_group.autoscaling-sg.id
+}
+
+resource "aws_vpc_security_group_ingress_rule" "db-ec2-ingress" {
+    from_port = 3306
+    ip_protocol = "tcp"
+    security_group_id = aws_security_group.db-sg.id
+    to_port = 3306
+    referenced_security_group_id = aws_security_group.wordpress-sg.id
+}
+
+resource "aws_vpc_security_group_egress_rule" "db-egress" {
+    from_port = 3306
+    ip_protocol = "tcp"
+    security_group_id = aws_security_group.db-sg.id
+    to_port = 3306
+    referenced_security_group_id = aws_security_group.autoscaling-sg.id
+}
+
+resource "aws_vpc_security_group_egress_rule" "db-ec2-egress" {
+    from_port = 3306
+    ip_protocol = "tcp"
+    security_group_id = aws_security_group.db-sg.id
+    to_port = 3306
+    referenced_security_group_id = aws_security_group.wordpress-sg.id
+}   
 
 #output
 output "security_group_id" {
-  value       = aws_security_group.db-sg.id
+    value = aws_security_group.db-sg.id
 }
 output "db_instance_endpoint" {
-  value       = aws_db_instance.wp-db.endpoint
+    value = aws_db_instance.wp-db.endpoint
 }
