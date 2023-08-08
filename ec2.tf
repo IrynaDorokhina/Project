@@ -1,3 +1,4 @@
+
 #Select latest AMI-id amazon linux
 data "aws_ami" "latest_amazon_linux" {
     most_recent = true
@@ -26,7 +27,7 @@ resource "aws_instance" "wordpress" {
     provisioner "local-exec" {
         command = "echo Instance Type=${self.instance_type},Instance ID=${self.id},Public DNS=${self.public_dns},AMI ID=${self.ami} >> ec2-details"
     }
-}
+} 
 
 resource "aws_security_group" "wordpress-sg" {
     vpc_id = aws_vpc.wp-vpc.id

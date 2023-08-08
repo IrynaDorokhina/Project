@@ -17,7 +17,7 @@ resource "aws_db_subnet_group" "db-subnet-group" {
 
 resource "aws_db_instance" "wp-db" {
     engine = "mysql"
-    identifier = "db-rds"
+    identifier = "wp-db"
     allocated_storage = 20
     engine_version = "5.7"
     instance_class = "db.t2.micro"
@@ -32,7 +32,7 @@ resource "aws_db_instance" "wp-db" {
     #  command = "chmod 777 migrate.sh; ./migrate.sh"
     #}
     provisioner "local-exec" {
-        command = "echo rds endpoint = ${self.endpoint} >> metadatafile.txt"
+        command = "echo rds endpoint = ${self.endpoint}, rds address = ${self.address} >> metadatafile.txt"
     }
 }
 

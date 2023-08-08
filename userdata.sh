@@ -22,10 +22,10 @@ sudo systemctl start mysqld.service
 #sudo /etc/init.d/mysql start
 
 # Create WordPress database, user, and grant privileges
-sudo mysql -e "CREATE DATABASE wordpress;"
-sudo mysql -e "CREATE USER 'wpuser03'@'localhost' IDENTIFIED BY 'wppassword';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser03'@'localhost';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+#sudo mysql -e "CREATE DATABASE wordpress;"
+#sudo mysql -e "CREATE USER 'wpuser03'@'localhost' IDENTIFIED BY 'wppassword';"
+#sudo mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser03'@'localhost';"
+#sudo mysql -e "FLUSH PRIVILEGES;"
 
 # Download, unzip, and configure WordPress in the webroot
 cd /var/www/html
@@ -34,10 +34,15 @@ sudo unzip latest.zip
 sudo mv -f wordpress/* ./
 
 # Copy the sample WordPress configuration file and update the database credentials
-sudo cp wp-config-sample.php wp-config.php 
-sudo sed -i 's/database_name_here/wordpress/' wp-config.php 
-sudo sed -i 's/username_here/wpuser03/' wp-config.php 
-sudo sed -i 's/password_here/wppassword/' wp-config.php
+#sudo cp wp-config-sample.php wp-config.php 
+#sudo sed -i 's/database_name_here/wordpress/' wp-config.php 
+#sudo sed -i 's/username_here/wpuser03/' wp-config.php 
+#sudo sed -i 's/password_here/wppassword/' wp-config.php
+
+sudo sed -i "s/database_name_here/${DB}/g" /var/www/html/wp-config.php
+sudo sed -i "s/username_here/${User}/g" /var/www/html/wp-config.php
+sudo sed -i "s/password_here/${PW}/g" /var/www/html/wp-config.php
+sudo sed -i "s/localhost/${host}/" wp-config.php
 
 # Enable PHP 8.0 and update the system | for me necassary; for you maybe not
 sudo amazon-linux-extras enable php8.0

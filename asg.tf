@@ -1,17 +1,27 @@
 
+locals {
+    DB = "wp-db"
+    User = "admin"
+    PW = "password123"
+    host = aws_db_instance.wp-db.address
+}
+
 resource "aws_launch_template" "launch-template" {
     name = "launch-template"
     image_id = data.aws_ami.latest_amazon_linux.id
     instance_type = "t2.micro"
     vpc_security_group_ids = [ aws_security_group.autoscaling-sg.id ]
     user_data = base64encode(templatefile("userdatatemplate.sh", {
-        DB = "wordpress"
-        User = "wpuser"
-        PW = "wppassword"
-        host = "aws_db_instance.wp-db.address"     #how to store variables
+        DB = local.DB
+        User = local.User
+        PW = local.PW
+        host = local.host
     }
     ))
     depends_on = [ aws_db_instance.wp-db ]
+    iam_instance_profile {
+        name =  "LabInstanceProfile"
+    }
     tag_specifications {
         resource_type = "instance"
         tags = {
@@ -24,7 +34,7 @@ resource "aws_autoscaling_group" "autoscaling-group" {
     max_size = 4
     min_size = 2
     desired_capacity = 2
-    vpc_zone_identifier = [ aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id ]
+    vpc_zone_identifier = [ aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id ]
     target_group_arns = [ aws_lb_target_group.target-group.arn ]
     health_check_type = "ELB"
     health_check_grace_period = 300
@@ -66,7 +76,7 @@ resource "aws_vpc_security_group_ingress_rule" "autoscaling-ingress-ssh" {
     ip_protocol = "tcp"
     security_group_id = aws_security_group.autoscaling-sg.id
     to_port = 22
-    referenced_security_group_id= aws_security_group.wordpress-sg.id      # referenced sg
+    referenced_security_group_id= aws_security_group.wordpress-sg.id
 }
 
 resource "aws_vpc_security_group_ingress_rule" "autoscaling-ingress-db" {

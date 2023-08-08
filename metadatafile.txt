@@ -38,3 +38,39 @@ ec2_sg id = sg-0dd3920082cc4d5b7
 public_subnet_2 id = subnet-0a2931e07e6210a1b
 public_subnet_1 id = subnet-062bbe6d9c435d83b
 elb dns name = load-balancer-781893295.us-west-2.elb.amazonaws.com
+vpc id = vpc-030a6e43ac0b5db12
+VPC_IGW id = igw-0e8402bf1d0c3d5ce
+private_subnet_2 id = subnet-0bd67e9a292ec7d59
+private_subnet_1 id = subnet-07cb6e1866ffd0da7
+ec2_sg id = sg-0a6c516d9172f23ac
+public_subnet_1 id = subnet-072d4ff28ba59fe37
+public_subnet_2 id = subnet-0f1e826773030ddda
+elb dns name = load-balancer-1588443333.us-west-2.elb.amazonaws.com
+rds endpoint = db-rds.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com:3306, echo rds address = db-rds.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com
+vpc id = vpc-0ff71fbb0c70a7616
+private_subnet_1 id = subnet-0796aba585f693a97
+VPC_IGW id = igw-0339cfdd1048e1dc8
+private_subnet_2 id = subnet-0bebf3d385b8d7cf3
+ec2_sg id = sg-0885ab2adbd71af55
+public_subnet_2 id = subnet-0a42eab08599cf90a
+public_subnet_1 id = subnet-0d7e1a831a7d68654
+elb dns name = load-balancer-1120885680.us-west-2.elb.amazonaws.com
+rds endpoint = db-rds.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com:3306, rds address = db-rds.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com
+vpc id = vpc-000782770fea25e5b
+private_subnet_1 id = subnet-0e75c118efc846bcb
+private_subnet_2 id = subnet-0c279a73b046a7540
+VPC_IGW id = igw-01647b48b60ebf75a
+ec2_sg id = sg-04943027fea23c3be
+public_subnet_1 id = subnet-0ada0d85624e5e071
+public_subnet_2 id = subnet-0af0051638daf82c5
+elb dns name = load-balancer-13123496.us-west-2.elb.amazonaws.com
+rds endpoint = db-rds.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com:3306, rds address = db-rds.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com
+vpc id = vpc-065ca4543ea3ce70b
+VPC_IGW id = igw-034d16d97f3bcb2fb
+private_subnet_1 id = subnet-059597101ff3fd4df
+private_subnet_2 id = subnet-0f11fb34b36c93159
+ec2_sg id = sg-0b6592215811d1579
+public_subnet_2 id = subnet-01131f50fd4caa83b
+public_subnet_1 id = subnet-08d835c940aa0e8bc
+elb dns name = load-balancer-1848926095.us-west-2.elb.amazonaws.com
+rds endpoint = wp-db.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com:3306, rds address = wp-db.cfsc5qkxv6ij.us-west-2.rds.amazonaws.com
